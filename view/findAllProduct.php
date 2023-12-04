@@ -11,6 +11,7 @@ ob_start();
             <th>Prix</th>
             <th>Quantité</th>
             <th>En Promo</th>
+            <th>Catégorie</th>
             <th>Action</th>
             <th></th>
             <th></th>
@@ -25,7 +26,9 @@ ob_start();
         <td>$produit[1]</td>
         <td>$produit[2]</td>
         <td>$produit[3]</td>
+        <td>$produit[4]</td>
         <td>$produit[5]</td>
+        
         <td><a href='detail.php?ref=$produit[0]'>Voir détail...</a></td>
         <td><a href='edit.php?ref=$produit[0]'>Edit</a></td>
         <td><a href='../controller/delete.php?ref=$produit[0]'>Supprimer</a></td>

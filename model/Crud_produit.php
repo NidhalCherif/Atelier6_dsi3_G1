@@ -2,25 +2,16 @@
 
 <?php
 require_once "produit.php";
-require_once "../config/connexion.php";
+require_once "CRUD.php";
 
-class Crud_produit
+
+class Crud_produit extends CRUD
 {
-    private $pdo;
-    function __construct()
-    {
-        $obj = new connexion();
-        $this->pdo = $obj->getConnexion();
-    }
-    public function find($ref)
-    {
-        $sql = "select * from produit where reference ='$ref'";
-        $res = $this->pdo->query($sql); //$res est un objet PDOStatement
-        return $res->fetch(PDO::FETCH_NUM);
-    }
+    protected $table = 'produit';
     public function findAll()
     {
-        $sql = "select * from produit";
+        $sql = "select p.id,p.libelle,p.prix,p.qte,p.promo,c.libelle
+         from {$this->table} as p, categorie as c  where p.id_categorie=c.id";
         $res = $this->pdo->query($sql); //$res est un objet PDOStatement
         return $res->fetchAll(PDO::FETCH_NUM);
     }
@@ -34,16 +25,11 @@ class Crud_produit
         $pr = $p->getPromo();
         $d = $p->getDesc();
 
-        $sql = "insert into produit values('$r','$l',$p,$q,'$i',$pr,$d)";
+        $sql = "insert into {$this->table} values(null,'$l',$p,$q,'$i',$pr,$d)";
         $res = $this->pdo->exec($sql);
         return $res;
     }
-    public function delete($ref)
-    {
-        $sql = "delete from produit where reference ='$ref'";
-        $res = $this->pdo->exec($sql);
-        return $res;
-    }
+
     public function update(produit $p)
     {
     }
