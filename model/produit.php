@@ -1,4 +1,5 @@
 <?php
+require_once "categorie.php";
 class produit
 {
     private $reference;
@@ -8,7 +9,8 @@ class produit
     private $image;
     private $promo;
     private $desc;
-    public function __construct($r, $l, $p, $q, $i, $pr, $d)
+    private $categorie;
+    public function __construct($r, $l, $p, $q, $i, $pr, $d, categorie $c)
     {
         $this->reference = $r;
         $this->libelle = $l;
@@ -17,6 +19,7 @@ class produit
         $this->image = $i;
         $this->promo = $pr;
         $this->desc = $d;
+        $this->categorie = $c;
     }
 
 
@@ -144,6 +147,24 @@ class produit
     public function setDesc($desc): self
     {
         $this->desc = $desc;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of categorie
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    /**
+     * Set the value of categorie
+     */
+    public function setCategorie($categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

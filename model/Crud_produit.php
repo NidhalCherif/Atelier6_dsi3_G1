@@ -24,8 +24,9 @@ class Crud_produit extends CRUD
         $i = $p->getImage();
         $pr = $p->getPromo();
         $d = $p->getDesc();
+        $c = $p->getCategorie->getId();
 
-        $sql = "insert into {$this->table} values(null,'$l',$p,$q,'$i',$pr,$d)";
+        $sql = "insert into {$this->table} values(null,'$l',$p,$q,'$i',$pr,$d,$c)";
         $res = $this->pdo->exec($sql);
         return $res;
     }
